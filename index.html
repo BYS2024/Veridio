@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIDIO · Canal de Denuncias & Plataforma de Integridad Corporativa</title>
+  <meta name="description" content="Plataforma de integridad y canal de denuncias seguro, confidencial y adaptado a la Ley Karin (Ley 21.643) y Ley de Delitos Económicos (Ley 20.393/21.595) en Chile.">
+  <link rel="icon" type="image/svg+xml" href="veridio-logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#102a4c',
+              dark: '#0c1e36',
+              blue: '#246bce',
+              royal: '#1858be',
+              lightBlue: '#eef5ff',
+              accent: '#0d9488',
+            }
+          },
+          boxShadow: {
+            glow: '0 0 35px -5px rgba(36, 107, 206, 0.35)',
+            card: '0 10px 30px -10px rgba(16, 42, 76, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+    .gradient-brand {
+      background: linear-gradient(135deg, #102a4c 0%, #1e4a7a 50%, #246bce 100%);
+    }
+    .gradient-hero-bg {
+      background: radial-gradient(circle at 50% -20%, #e0edff 0%, #f8fafc 70%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(203, 216, 230, 0.7);
+    }
+    .badge-soft-blue {
+      background-color: #eef5ff;
+      color: #1858be;
+      border: 1px solid #cbdcf5;
+    }
+    .primary-btn {
+      background: linear-gradient(135deg, #1858be 0%, #246bce 100%);
+      box-shadow: 0 4px 18px rgba(36, 107, 206, 0.32);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(36, 107, 206, 0.45);
+      filter: brightness(1.05);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-brand-navy">
+
+  <!-- Top Announcement Bar -->
+  <aside class="bg-brand-navy text-slate-200 text-xs py-2 px-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+          Vigencia Legal 2026
+        </span>
+        <span class="hidden sm:inline">Conforme a <strong>Ley Karin (Ley N° 21.643)</strong> y <strong>Ley de Delitos Económicos (Ley N° 20.393 / 21.595)</strong></span>
+        <span class="sm:hidden">Cumplimiento Ley Karin & Delitos Económicos</span>
+      </div>
+      <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-medium hover:text-white transition group text-[11px]">
+        <span>Acceso plataforma en producción/QA</span>
+        <i data-lucide="external-link" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="VERIDIO Inicio">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-navy to-brand-blue flex items-center justify-center p-2 shadow-md shadow-brand-navy/15 group-hover:scale-105 transition-transform duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-full h-full" role="img">
+            <path d="M16 18h9.2L32 40.1 38.8 18H48L36.6 48h-9.2L16 18Z" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold tracking-tight text-brand-navy font-sans">VERIDIO</span>
+            <span class="text-[10px] font-bold tracking-wide uppercase px-1.5 py-0.5 rounded bg-blue-50 text-brand-royal border border-blue-200">
+              Compliance Chile
+            </span>
+          </div>
+          <span class="text-[11px] text-slate-500 font-medium">Canal de Denuncias & Integridad</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Navigation -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="#ley-karin" class="hover:text-brand-blue transition-colors flex items-center gap-1.5">
+          <span>Ley Karin</span>
+        </a>
+        <a href="#ley-delitos" class="hover:text-brand-blue transition-colors">Ley 20.393 / 21.595</a>
+        <a href="#caracteristicas" class="hover:text-brand-blue transition-colors">Funcionalidades</a>
+        <a href="#como-funciona" class="hover:text-brand-blue transition-colors">Flujo Seguro</a>
+        <a href="#precios" class="text-blue-700 font-bold hover:text-brand-navy transition-colors flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Planes & Precios</span>
+        </a>
+        <a href="#faq" class="hover:text-brand-blue transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- Contratar Ahora Button -->
+        <a href="#precios"
+           class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-sm font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all">
+          <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+          <span>Contratar</span>
+        </a>
+
+        <!-- Main Button: Ingresar a la plataforma -->
+        <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+           class="primary-btn text-white text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 group">
+          <i data-lucide="lock-keyhole" class="w-4 h-4 text-blue-200"></i>
+          <span>Ingresar a la plataforma</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-blue-200 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" aria-label="Abrir Menú" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+        <i data-lucide="menu" id="menuIconOpen" class="w-6 h-6"></i>
+        <i data-lucide="x" id="menuIconClose" class="w-6 h-6 hidden"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3">
+      <a href="#ley-karin" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-blue">Ley Karin (N° 21.643)</a>
+      <a href="#ley-delitos" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-blue">Ley 20.393 / 21.595</a>
+      <a href="#caracteristicas" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-blue">Funcionalidades</a>
+      <a href="#como-funciona" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-blue">Flujo de Denuncias</a>
+      <a href="#precios" class="block py-2 text-base font-bold text-blue-700 hover:text-brand-navy">Planes y Precios (Desde $40.000 + IVA)</a>
+      <a href="#faq" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-blue">Preguntas Frecuentes</a>
+      <div class="pt-4 border-t border-slate-100 space-y-2">
+        <a href="#precios"
+           class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Contratar Plan con Flow</span>
+        </a>
+        <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+           class="w-full primary-btn text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2">
+          <i data-lucide="lock-keyhole" class="w-4 h-4"></i>
+          <span>Ingresar a la plataforma</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 gradient-hero-bg overflow-hidden">
+    <!-- Subtle Background Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-400/15 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full badge-soft-blue text-xs font-bold tracking-wide uppercase">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-royal"></span>
+            </span>
+            Plataforma de Integridad & Compliance
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy tracking-tight leading-[1.12]">
+            Gestión segura.<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-blue-600 to-sky-600">
+              Confianza real.
+            </span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <strong>VERIDIO</strong> centraliza canales de denuncia, seguimiento confidencial y gestión de expedientes con <strong>aislamiento estricto por organización</strong>, adaptado a la legislación laboral y penal chilena.
+          </p>
+
+          <!-- Main Call To Action Group -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+            <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto primary-btn text-white font-bold text-base px-7 py-3.5 rounded-xl flex items-center justify-center gap-2.5 shadow-lg group">
+              <i data-lucide="lock" class="w-5 h-5 text-blue-200"></i>
+              <span>Ingresar a la plataforma</span>
+              <i data-lucide="arrow-right" class="w-5 h-5 text-blue-200 group-hover:translate-x-1.5 transition-transform"></i>
+            </a>
+
+            <a href="#precios"
+               class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-6 py-3.5 rounded-xl shadow-md shadow-emerald-700/20 flex items-center justify-center gap-2 transition hover:-translate-y-0.5">
+              <i data-lucide="sparkles" class="w-5 h-5 text-emerald-200"></i>
+              <span>Contratar ahora</span>
+              <span class="text-xs bg-emerald-800/70 text-emerald-100 px-2 py-0.5 rounded-full font-semibold">Hasta 10% OFF</span>
+            </a>
+
+            <a href="#como-funciona"
+               class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 font-bold text-base px-5 py-3.5 rounded-xl border border-slate-300/80 shadow-sm flex items-center justify-center gap-2 transition">
+              <i data-lucide="shield-check" class="w-4 h-4 text-slate-500"></i>
+              <span>Cómo funciona</span>
+            </a>
+          </div>
+
+          <!-- Trust Proof / Highlights -->
+          <div class="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-slate-200/80 text-left">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-semibold text-slate-700">100% Confidencial y Anónimo</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center flex-shrink-0">
+                <i data-lucide="database" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-semibold text-slate-700">Aislamiento por Organización</span>
+            </div>
+            <div class="col-span-2 sm:col-span-1 flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="scale" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-semibold text-slate-700">Acreditación Dirección del Trabajo</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Interactive Graphic Mockup -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Dashboard Preview Card -->
+            <div class="glass-card rounded-2xl shadow-2xl p-6 border border-slate-200/80 relative overflow-hidden">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-navy via-brand-blue to-cyan-500"></div>
+              
+              <!-- Card Top Header -->
+              <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-lg bg-brand-navy flex items-center justify-center text-white font-black text-sm">
+                    V
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-brand-navy">Expediente de Cumplimiento</h3>
+                    <p class="text-[11px] text-slate-500">Folio: <span class="font-mono font-bold text-slate-700">#VRD-2026-CH092</span></p>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  En Plazo Legal
+                </span>
+              </div>
+
+              <!-- Case Details Body -->
+              <div class="py-4 space-y-3.5">
+                <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/60">
+                  <div class="text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-1">Tipología Normativa</div>
+                  <div class="text-xs font-bold text-brand-navy flex items-center gap-1.5">
+                    <i data-lucide="file-warning" class="w-4 h-4 text-amber-500"></i>
+                    Ley Karin (Ley 21.643) · Acoso Laboral / Resguardo Inmediato
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+                    <span class="block text-[10px] uppercase font-bold text-slate-500">Canal de Ingreso</span>
+                    <span class="font-bold text-brand-royal flex items-center gap-1 mt-0.5">
+                      <i data-lucide="user-x" class="w-3.5 h-3.5"></i> Anónimo con PIN
+                    </span>
+                  </div>
+                  <div class="p-3 bg-amber-50/60 rounded-xl border border-amber-100">
+                    <span class="block text-[10px] uppercase font-bold text-slate-500">Medida de Resguardo</span>
+                    <span class="font-bold text-amber-700 flex items-center gap-1 mt-0.5">
+                      <i data-lucide="clock" class="w-3.5 h-3.5"></i> Plazo: 3 días hábiles
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Timeline / Audit Trail Simulator -->
+                <div class="pt-2 space-y-2">
+                  <div class="text-[11px] font-bold text-slate-700 flex items-center justify-between">
+                    <span>Trazabilidad de Cadena de Custodia</span>
+                    <span class="text-[10px] text-emerald-600 font-mono font-bold">SHA-256 VERIFIED</span>
+                  </div>
+                  <div class="space-y-2 text-xs">
+                    <div class="flex items-start gap-2.5">
+                      <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                      <div class="flex-1">
+                        <span class="font-semibold text-slate-800">Recepción segura encriptada</span>
+                        <div class="text-[11px] text-slate-500">Evidencias archivadas con hash inmutable</div>
+                      </div>
+                      <span class="text-[10px] text-slate-400 font-mono">10:14 AM</span>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                      <div class="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
+                      <div class="flex-1">
+                        <span class="font-semibold text-slate-800">Asignación al Oficial de Cumplimiento</span>
+                        <div class="text-[11px] text-slate-500">Notificación cifrada enviada a la organización</div>
+                      </div>
+                      <span class="text-[10px] text-slate-400 font-mono">10:19 AM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Bottom Action -->
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs text-slate-500 font-medium">Acceso autorizado con 2FA</span>
+                <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1 text-xs font-bold text-brand-blue hover:text-brand-royal">
+                  <span>Abrir consola</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Floating Badge: Ley Karin Compliance -->
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-xl p-3.5 shadow-xl border border-slate-200/90 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Ley 21.643 (Karin)</p>
+                <p class="text-[11px] text-slate-500">Plazos y protocolos automatizados</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Tenancy Isolation -->
+            <div class="absolute -top-5 -right-5 bg-white rounded-xl p-3 shadow-xl border border-slate-200/90 hidden sm:flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-brand-royal text-white flex items-center justify-center">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Multi-Inquilino</p>
+                <p class="text-[11px] text-slate-500">Base de datos aislada por empresa</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MARCO LEGAL CHILENO (Key Legal Compliance Section) -->
+  <section id="ley-karin" class="py-20 bg-white border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold text-brand-royal uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+          Marco Regulatorio Exigible en Chile
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+          Diseñado específicamente para la legislación chilena
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg">
+          VERIDIO no es una herramienta genérica. Cumple rigurosamente con los estándares probatorios, plazos de respuesta y deberes de custodia ordenados por las leyes vigentes.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1: Ley Karin -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-2xl p-7 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-royal flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Ley N° 21.643</span>
+              <h3 class="text-xl font-bold text-brand-navy mt-0.5">Ley Karin</h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Gestión inmediata de denuncias por <strong>acoso laboral, sexual y violencia en el trabajo</strong>. Control automatizado de los plazos perentorios de medidas de resguardo y derivación obligatoria a la Inspección del Trabajo o Mutualidades.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Medidas de resguardo tempranas documentadas</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Informe de investigación con estándar legal DT</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Garantía de confidencialidad e imparcialidad</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-4 border-t border-slate-100">
+            <span class="text-xs font-bold text-brand-royal flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Obligatorio para empleadores en Chile &rarr;
+            </span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Ley 20.393 & 21.595 -->
+        <div id="ley-delitos" class="bg-slate-50/70 hover:bg-white rounded-2xl p-7 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="briefcase" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Ley N° 20.393 & 21.595</span>
+              <h3 class="text-xl font-bold text-brand-navy mt-0.5">Delitos Económicos y Ambientales</h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Canal de denuncias idóneo como pilar central del <strong>Modelo de Prevención de Delitos (MPD)</strong> para eximir de responsabilidad penal a personas jurídicas y directores frente a más de 200 figuras penales económicas.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Canal autónomo, anónimo y con protección al denunciante</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Trazabilidad exigible por el Ministerio Público</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Bitácora de investigación sin posibilidad de alteración</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-4 border-t border-slate-100">
+            <span class="text-xs font-bold text-amber-700 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Protección penal para el Directorio &rarr;
+            </span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Protección de Datos & Custodia -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-2xl p-7 border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">Ley N° 19.628</span>
+              <h3 class="text-xl font-bold text-brand-navy mt-0.5">Protección de Datos & Evidencias</h3>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Tratamiento seguro de datos sensibles de denunciantes, denunciados y testigos. Conservación de archivos digitales y registros de audio con cadena de custodia probatoria inalterable.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Minimización de datos y roles de acceso estricto</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Firma criptográfica de cada registro generado</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                <span>Aislamiento por organización para evitar fugas</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-4 border-t border-slate-100">
+            <span class="text-xs font-bold text-emerald-700 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Estándar de ciberseguridad corporativo &rarr;
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CARACTERÍSTICAS / CAPACIDADES DE LA PLATAFORMA -->
+  <section id="caracteristicas" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold text-brand-royal uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+          Tecnología de Grado Empresarial
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+          Todas las herramientas que el Oficial de Cumplimiento necesita
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg">
+          Un entorno intuitivo, rápido y protegido para gestionar todo el ciclo de vida de una denuncia sin planillas Excel ni correos desprotegidos.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="fingerprint" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Canal Anónimo o Identificado</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            El denunciante puede optar por reserva total de identidad o proporcionar sus datos. La plataforma genera un PIN único de 16 dígitos para seguimiento bidireccional sin revelar su identidad.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="clock-alert" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Semáforo de Plazos Legales</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Alertas automáticas para el Oficial de Cumplimiento sobre los 3 días de medidas de resguardo, plazos de investigación interna y remisión formal ante la Dirección del Trabajo.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="database-zap" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Aislamiento por Organización</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Arquitectura multi-tenant con segregación de datos absoluta. Cada empresa u organización tiene su propio portal personalizado, políticas y custodios sin interferencia cruzada.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="file-check-2" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Bóveda Criptográfica de Evidencias</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Adjunte PDFs, audios de WhatsApp, correos o capturas. Cada archivo se sella con fecha y hora inmutable para garantizar su valor probatorio ante tribunales o fiscalías.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Gestión de Conflictos de Interés</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Si la denuncia involucra a un miembro del comité investigador, el sistema lo inhabilita automáticamente del expediente protegiendo la imparcialidad del proceso.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-royal flex items-center justify-center mb-4">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-lg font-bold text-brand-navy mb-2">Reportes para Directorios & Auditoría</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Estadísticas consolidadas anonimizadas: tasa de resolución, áreas con mayor fricción, tipología de conductas y cumplimiento de los programas de ética empresarial.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Quick Platform CTA Banner inside features -->
+      <div class="mt-14 bg-gradient-to-r from-brand-navy via-slate-900 to-brand-royal rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-2 text-center md:text-left">
+          <h3 class="text-2xl font-bold">¿Tienes credenciales de tu organización?</h3>
+          <p class="text-slate-300 text-sm max-w-xl">
+            Inicia sesión directamente para dar seguimiento a expedientes, registrar informes o gestionar nuevos casos en VERIDIO.
+          </p>
+        </div>
+        <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+           class="primary-btn text-white font-bold text-sm px-6 py-3.5 rounded-xl flex items-center gap-2 whitespace-nowrap shadow-md">
+          <i data-lucide="log-in" class="w-4 h-4"></i>
+          <span>Ingresar a la plataforma</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKFLOW: CÓMO FUNCIONA EL CANAL -->
+  <section id="como-funciona" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold text-brand-royal uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+          Flujo Protegido Paso a Paso
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+          ¿Cómo opera el canal seguro de VERIDIO?
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg">
+          Un proceso transparente y riguroso desde el primer clic hasta la conclusión del informe.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="relative bg-slate-50 rounded-2xl p-8 border border-slate-200/80 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-black text-lg flex items-center justify-center">
+              01
+            </div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">Recepción</span>
+          </div>
+          <h4 class="text-xl font-bold text-brand-navy">Ingreso de la Denuncia</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            El colaborador, contratista o cliente accede al portal de su empresa. Completa el formulario confidencial y recibe un código secreto alfanumérico para revisar avances sin exponer su correo o teléfono.
+          </p>
+          <div class="pt-2">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-royal bg-blue-50 px-2.5 py-1 rounded-lg">
+              <i data-lucide="shield" class="w-3.5 h-3.5"></i> Cifrado TLS 1.3
+            </span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-slate-50 rounded-2xl p-8 border border-slate-200/80 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-xl bg-brand-navy text-white font-black text-lg flex items-center justify-center">
+              02
+            </div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">Investigación</span>
+          </div>
+          <h4 class="text-xl font-bold text-brand-navy">Gestión y Medidas</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            El Oficial de Cumplimiento recibe la alerta. Si aplica Ley Karin, se activan inmediatamente las medidas cautelares de separación o apoyo psicológico. La comunicación con el denunciante se realiza mediante el chat anónimo.
+          </p>
+          <div class="pt-2">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> Control de plazos perentorios
+            </span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-slate-50 rounded-2xl p-8 border border-slate-200/80 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center">
+              03
+            </div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">Dictamen</span>
+          </div>
+          <h4 class="text-xl font-bold text-brand-navy">Conclusión & Remisión</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Se redacta el informe final con los hallazgos, sanciones o medidas correctivas. El sistema genera el expediente digital foliado listo para fiscalizaciones de la Dirección del Trabajo o tribunales.
+          </p>
+          <div class="pt-2">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Informe con validez legal
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE: RIESGO VS TRANQUILIDAD -->
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
+          ¿Por qué migrar a VERIDIO frente a métodos tradicionales?
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Los correos electrónicos o buzones físicos ya no cumplen los estándares de la Ley Karin ni de la Ley de Delitos Económicos en Chile.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-700">
+              <tr>
+                <th class="p-4 sm:p-5">Criterio Legal / Operativo</th>
+                <th class="p-4 sm:p-5 text-rose-600">Canal Informal (Email / Buzón)</th>
+                <th class="p-4 sm:p-5 bg-blue-50/60 text-brand-royal font-extrabold">VERIDIO Platform</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200/80 text-slate-700">
+              <tr>
+                <td class="p-4 sm:p-5 font-semibold text-slate-900">Anonimato real garantizado</td>
+                <td class="p-4 sm:p-5 text-slate-500">❌ Imposible (IP, remitente o letra visible)</td>
+                <td class="p-4 sm:p-5 bg-blue-50/30 font-bold text-emerald-600">✓ 100% Cifrado sin registro de IP ni cookies</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-semibold text-slate-900">Control de plazos legales Ley Karin</td>
+                <td class="p-4 sm:p-5 text-slate-500">❌ Manual en Excel (alto riesgo de multas)</td>
+                <td class="p-4 sm:p-5 bg-blue-50/30 font-bold text-emerald-600">✓ Semáforo automático con alertas preventivas</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-semibold text-slate-900">Cadena de custodia de pruebas</td>
+                <td class="p-4 sm:p-5 text-slate-500">❌ Fácilmente editable o impugnable en juicio</td>
+                <td class="p-4 sm:p-5 bg-blue-50/30 font-bold text-emerald-600">✓ Bóveda inmutable con sellado criptográfico</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-semibold text-slate-900">Inhabilitación por conflicto de interés</td>
+                <td class="p-4 sm:p-5 text-slate-500">❌ Riesgo de que el denunciado lea el correo</td>
+                <td class="p-4 sm:p-5 bg-blue-50/30 font-bold text-emerald-600">✓ Bloqueo automático de acceso a investigados</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-semibold text-slate-900">Acreditación ante la Dirección del Trabajo</td>
+                <td class="p-4 sm:p-5 text-slate-500">❌ Sujeto a objeciones y sanciones de la DT</td>
+                <td class="p-4 sm:p-5 bg-blue-50/30 font-bold text-emerald-600">✓ Formatos estandarizados conforme al dictamen oficial</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PLANES Y PRECIOS / CONTRATAR CON FLOW -->
+  <section id="precios" class="py-24 bg-gradient-to-b from-slate-50 to-white border-t border-slate-200 relative overflow-hidden">
+    <!-- Ambient subtle background glow -->
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-400/10 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span>Plan Anual Único · Cobertura Total</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy tracking-tight">
+          Un solo plan integral.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-royal via-blue-600 to-sky-600">
+            Paga a tu ritmo con descuentos.
+          </span>
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          Para garantizar la continuidad jurídica de tu empresa, <strong>todos nuestros planes son anuales</strong>. Elige tu modalidad de pago preferida a través de la pasarela segura <strong>Flow</strong> y accede a hasta un <strong>10% de descuento inmediato</strong>.
+        </p>
+      </div>
+
+      <!-- Pricing Cards Grid (3 Options: Mensual, Semestral con 5% Dcto, Anual con 10% Dcto) -->
+      <div class="grid lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        
+        <!-- CARD 1: PAGO MENSUAL -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Modalidad 01</span>
+                <h3 class="text-2xl font-bold text-brand-navy mt-1">Pago Mensual</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed min-h-[36px]">
+              Contrato anual con cargo mensual. Máxima liquidez y flexibilidad de flujo de caja para tu empresa.
+            </p>
+
+            <!-- Price Breakdown -->
+            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-brand-navy tracking-tight">$40.000</span>
+                <span class="text-xs font-bold text-slate-500 uppercase">+ IVA / mes</span>
+              </div>
+              <div class="text-xs text-slate-500 pt-2 border-t border-slate-200/70 flex justify-between">
+                <span>Total mensual con IVA (19%):</span>
+                <span class="font-bold text-slate-800">$47.600 CLP</span>
+              </div>
+              <div class="text-[11px] text-slate-400">
+                Plan anual facturado mes a mes
+              </div>
+            </div>
+
+            <!-- Features Checklist -->
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider block">Incluye:</span>
+              <ul class="space-y-2.5 text-xs text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Canal conforme a <strong>Ley Karin (Ley 21.643)</strong></span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Canal para <strong>Ley 20.393 / 21.595</strong></span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Denuncias confidenciales con PIN único</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Aislamiento multi-tenant por empresa</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Bóveda inmutable de evidencias (SHA-256)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-8 mt-6 border-t border-slate-100 space-y-3">
+            <a href="https://www.flow.cl/" target="_blank" rel="noopener noreferrer"
+               class="w-full bg-slate-900 hover:bg-brand-royal text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-sm group">
+              <span>Contratar Mensual en Flow</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Pasarela segura Flow · Factura mensual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: PAGO SEMESTRAL (5% DESCUENTO) -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-blue-200 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between relative group">
+          
+          <!-- Discount Top Pill -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md">
+            5% Descuento Semestral
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Modalidad 02</span>
+                <h3 class="text-2xl font-bold text-brand-navy mt-1">Pago Semestral</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-royal flex items-center justify-center">
+                <i data-lucide="percent" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed min-h-[36px]">
+              Pago cada 6 meses. Descuento aplicado directamente en cada cuota semestral con ahorro comprobado.
+            </p>
+
+            <!-- Price Breakdown -->
+            <div class="p-5 bg-blue-50/50 rounded-2xl border border-blue-100 space-y-2">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-brand-navy tracking-tight">$228.000</span>
+                <span class="text-xs font-bold text-slate-500 uppercase">+ IVA / semestre</span>
+              </div>
+              <div class="text-xs text-brand-royal font-semibold">
+                Equivale a <strong>$38.000 + IVA / mes</strong> <span class="line-through text-slate-400 font-normal">$40.000</span>
+              </div>
+              <div class="text-xs text-slate-600 pt-2 border-t border-blue-100 flex justify-between">
+                <span>Total semestre con IVA (19%):</span>
+                <span class="font-bold text-brand-navy">$271.320 CLP</span>
+              </div>
+              <div class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+                <i data-lucide="badge-percent" class="w-3.5 h-3.5"></i>
+                <span>Ahorras $12.000 neto por semestre</span>
+              </div>
+            </div>
+
+            <!-- Features Checklist -->
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider block">Incluye todo lo anterior, más:</span>
+              <ul class="space-y-2.5 text-xs text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Canal Ley Karin + Ley Delitos Económicos</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Alertas automáticas de plazos Dirección del Trabajo</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Usuarios y roles ilimitados para comité</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                  <span>Generador de informes periciales PDF para DT</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-8 mt-6 border-t border-slate-100 space-y-3">
+            <a href="https://www.flow.cl/" target="_blank" rel="noopener noreferrer"
+               class="w-full bg-brand-royal hover:bg-brand-blue text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all text-sm group">
+              <span>Contratar Semestral en Flow</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-blue-200 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Pasarela segura Flow · Factura semestral</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: PAGO ANUAL (10% DESCUENTO - RECOMENDADO) -->
+        <div class="bg-gradient-to-b from-brand-navy to-slate-900 text-white rounded-3xl p-8 border-2 border-emerald-400 shadow-2xl hover:shadow-glow transition-all duration-300 flex flex-col justify-between relative group">
+          
+          <!-- Best Value Top Pill -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 text-[11px] font-black uppercase tracking-wider px-4 py-1 rounded-full shadow-lg flex items-center gap-1">
+            <i data-lucide="flame" class="w-3 h-3 text-slate-950"></i>
+            <span>10% Dcto · Máximo Ahorro</span>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Modalidad 03 · Preferida</span>
+                <h3 class="text-2xl font-bold text-white mt-1">Pago Anual Completo</h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-white/10 text-emerald-400 flex items-center justify-center border border-white/10">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed min-h-[36px]">
+              Un solo pago anual. Mayor rentabilidad, menor gestión administrativa y garantía de cobertura anual ininterrumpida.
+            </p>
+
+            <!-- Price Breakdown -->
+            <div class="p-5 bg-white/10 rounded-2xl border border-white/15 space-y-2 backdrop-blur-sm">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-white tracking-tight">$432.000</span>
+                <span class="text-xs font-bold text-emerald-300 uppercase">+ IVA / año</span>
+              </div>
+              <div class="text-xs text-emerald-300 font-semibold">
+                Equivale a solo <strong>$36.000 + IVA / mes</strong> <span class="line-through text-slate-400 font-normal">$40.000</span>
+              </div>
+              <div class="text-xs text-slate-300 pt-2 border-t border-white/15 flex justify-between">
+                <span>Total anual con IVA (19%):</span>
+                <span class="font-bold text-white">$514.080 CLP</span>
+              </div>
+              <div class="text-[11px] text-emerald-300 font-bold flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Ahorro neto total de $48.000 al año</span>
+              </div>
+            </div>
+
+            <!-- Features Checklist -->
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-emerald-300 uppercase tracking-wider block">Todo incluido sin límites:</span>
+              <ul class="space-y-2.5 text-xs text-slate-200">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Implementación prioritaria en menos de 24 hrs</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Capacitación remota inicial para el Oficial de Cumplimiento</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Actualizaciones legales sin costo ante reformas de ley</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Soporte prioritario por WhatsApp y correo</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-8 mt-6 border-t border-white/15 space-y-3">
+            <a href="https://www.flow.cl/" target="_blank" rel="noopener noreferrer"
+               class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all text-sm group">
+              <i data-lucide="credit-card" class="w-4 h-4 text-slate-950"></i>
+              <span>Contratar Anual en Flow ($514.080)</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>Pasarela oficial Flow · Factura electrónica anual</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FLOW PAYMENT GATEWAY INTEGRATION TRUST BANNER -->
+      <div class="mt-16 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-md max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+          
+          <div class="md:col-span-4 space-y-3 text-center md:text-left border-b md:border-b-0 md:border-r border-slate-200/80 pb-6 md:pb-0 md:pr-8">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i>
+              Pasarela de Pago Certificada
+            </div>
+            <div class="flex items-center justify-center md:justify-start gap-2">
+              <span class="text-3xl font-extrabold tracking-tight text-slate-900">flow</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Pagos Seguros Chile</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Todos los pagos son procesados directamente a través de <strong>Flow.cl</strong> con estándares bancarios de seguridad SSL/TLS de 256 bits.
+            </p>
+          </div>
+
+          <div class="md:col-span-8 space-y-4">
+            <div class="text-xs font-bold text-slate-700 uppercase tracking-wider text-center md:text-left">
+              Medios de Pago Habilitados en Flow:
+            </div>
+            
+            <!-- Badges of payment methods -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center gap-1">
+                <i data-lucide="credit-card" class="w-5 h-5 text-blue-600"></i>
+                <span class="text-xs font-bold text-slate-800">Webpay Plus</span>
+                <span class="text-[10px] text-slate-500">Crédito en cuotas</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center gap-1">
+                <i data-lucide="wallet" class="w-5 h-5 text-emerald-600"></i>
+                <span class="text-xs font-bold text-slate-800">Redcompra</span>
+                <span class="text-[10px] text-slate-500">Tarjetas de Débito</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center gap-1">
+                <i data-lucide="smartphone" class="w-5 h-5 text-purple-600"></i>
+                <span class="text-xs font-bold text-slate-800">Mach / Prepago</span>
+                <span class="text-[10px] text-slate-500">Tenpo, Chek, OnePay</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center gap-1">
+                <i data-lucide="building" class="w-5 h-5 text-amber-600"></i>
+                <span class="text-xs font-bold text-slate-800">Servipag / Khipu</span>
+                <span class="text-[10px] text-slate-500">Transferencias</span>
+              </div>
+
+            </div>
+
+            <!-- Tax Invoice clarification -->
+            <div class="flex items-center gap-3 bg-blue-50/70 p-3.5 rounded-xl border border-blue-100 text-xs text-slate-700">
+              <i data-lucide="receipt" class="w-5 h-5 text-brand-royal flex-shrink-0"></i>
+              <span>
+                <strong>Factura Electrónica Inmediata:</strong> Al completar tu pago mediante Flow, indícanos el RUT y razón social de tu empresa para la emisión y envío automático del documento tributario al SII.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ (PREGUNTAS FRECUENTES INTERACTIVAS) -->
+  <section id="faq" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-14 space-y-3">
+        <span class="text-xs font-bold text-brand-royal uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+          Respuestas Claras
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+          Preguntas Frecuentes
+        </h2>
+        <p class="text-slate-600 text-base">
+          Todo lo que necesitas saber sobre la plataforma, planes y medios de pago en Chile.
+        </p>
+      </div>
+
+      <div class="space-y-4" id="faqAccordion">
+        
+        <!-- FAQ 0: Precios y Flow -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span class="flex items-center gap-2">
+              <i data-lucide="tag" class="w-4 h-4 text-emerald-600"></i>
+              ¿Cómo son las opciones de pago y qué descuentos aplican?
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            Existe un <strong>único Plan Anual</strong> con valor base de <strong>$40.000 + IVA al mes</strong>. Para adaptarse a las necesidades de tu empresa, dispones de 3 modalidades de pago:<br>
+            • <strong>Pago mensual:</strong> $40.000 + IVA ($47.600 total mes a mes).<br>
+            • <strong>Pago semestral (5% de descuento):</strong> $228.000 + IVA ($271.320 total por semestre), equivalente a $38.000 + IVA/mes.<br>
+            • <strong>Pago anual (10% de descuento):</strong> $432.000 + IVA ($514.080 total anual), equivalente a $36.000 + IVA/mes. Ahorras $48.000 netos.
+          </div>
+        </div>
+
+        <!-- FAQ Flow -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span class="flex items-center gap-2">
+              <i data-lucide="credit-card" class="w-4 h-4 text-brand-royal"></i>
+              ¿Cómo se realiza el pago a través de Flow y la facturación?
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            El pago se procesa de forma 100% segura mediante la pasarela chilena <strong>Flow</strong>, permitiendo pagar con Webpay Plus (tarjetas de crédito en cuotas y débito Redcompra), Mach, Tenpo, Chek o Servipag. Una vez confirmado el pago, se emite automáticamente la <strong>Factura Electrónica</strong> afecta a IVA a nombre y RUT de tu empresa.
+          </div>
+        </div>
+
+        <!-- FAQ 1 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span>¿Cómo garantiza VERIDIO el anonimato del denunciante?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            VERIDIO no almacena direcciones IP, metadatos de navegadores ni huellas digitales. Al ingresar la denuncia de forma anónima, se genera una llave o PIN único de seguimiento que solo el denunciante conoce. Con esta llave puede consultar respuestas del investigador y aportar más pruebas sin revelar jamás su identidad.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span>¿Es obligatorio tener este canal según la Ley Karin?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            Sí. La Ley N° 21.643 exige a todas las empresas en Chile contar con un procedimiento formal, imparcial y confidencial para la investigación de denuncias de acoso laboral, acoso sexual y violencia en el trabajo. VERIDIO automatiza los plazos legales requeridos y garantiza la custodia exigida por la Dirección del Trabajo (DT).
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span>¿Qué ocurre si una empresa tiene múltiples filiales o razones sociales?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            La arquitectura de VERIDIO está preparada para esquemas multi-empresa y grupos corporativos. Permite configurar aislamiento de datos por razón social, asignando comités de ética u oficiales de cumplimiento específicos para cada filial, o bien una vista corporativa consolidada.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between gap-4 bg-slate-50/50 hover:bg-slate-50">
+            <span>¿Cómo se ingresa a la plataforma operativa?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-content hidden p-5 pt-0 text-sm text-slate-600 bg-slate-50/50 leading-relaxed border-t border-slate-100">
+            Puedes hacer clic en cualquier botón de <strong>"Ingresar a la plataforma"</strong> ubicado en esta página (que te redirige a <code>https://qa.veridio.cl/</code>). Desde allí, los oficiales de cumplimiento, administradores y denunciantes con código pueden acceder a sus respectivas áreas seguras.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CALL TO ACTION SECTION -->
+  <section class="py-20 gradient-brand text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40"></div>
+    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-semibold">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+        <span>Acceso Seguro y Verificado</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+        Asegura la integridad y cumplimiento<br>de tu organización hoy mismo
+      </h2>
+
+      <p class="text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed">
+        Cumple con los plazos perentorios de la Ley Karin y protege a tu empresa ante la Ley de Delitos Económicos con la plataforma líder en Chile.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <!-- Contratar Plan con Flow Button -->
+        <a href="#precios"
+           class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-base px-8 py-4 rounded-xl shadow-2xl flex items-center justify-center gap-2.5 transition-all duration-200">
+          <i data-lucide="sparkles" class="w-5 h-5 text-slate-950"></i>
+          <span>Contratar Plan con Flow</span>
+          <span class="text-xs bg-slate-950 text-emerald-300 px-2 py-0.5 rounded-full font-bold">Hasta 10% OFF</span>
+        </a>
+
+        <!-- Direct Primary Button to the requested URL -->
+        <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer"
+           class="w-full sm:w-auto bg-white text-brand-navy hover:bg-blue-50 font-extrabold text-base px-8 py-4 rounded-xl shadow-2xl flex items-center justify-center gap-3 transition-all duration-200 group">
+          <i data-lucide="lock-keyhole" class="w-5 h-5 text-brand-royal"></i>
+          <span>Ingresar a la plataforma</span>
+          <i data-lucide="arrow-right" class="w-5 h-5 text-brand-royal group-hover:translate-x-1.5 transition-transform"></i>
+        </a>
+      </div>
+
+      <p class="text-xs text-blue-200/80 pt-4">
+        Destino oficial de acceso: <span class="font-mono underline text-white">https://qa.veridio.cl/</span> · Pasarela de pago: <span class="font-bold text-white">Flow.cl</span>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 py-14 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800 text-sm">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-900 to-blue-600 flex items-center justify-center p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-full h-full" role="img">
+                <path d="M16 18h9.2L32 40.1 38.8 18H48L36.6 48h-9.2L16 18Z" fill="#ffffff"/>
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-white tracking-tight">VERIDIO</span>
+            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/50">
+              Compliance Chile
+            </span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Plataforma corporativa de integridad, gestión de canales de denuncia y cumplimiento normativo integral para organizaciones en Chile.
+          </p>
+          <div class="text-xs text-slate-500">
+            Santiago de Chile · Cobertura nacional
+          </div>
+        </div>
+
+        <!-- Col 2: Marco Regulatorio -->
+        <div class="space-y-3">
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider">Legislación Vigente</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#ley-karin" class="hover:text-white transition">Ley Karin (N° 21.643)</a></li>
+            <li><a href="#ley-delitos" class="hover:text-white transition">Ley Delitos Económicos (N° 20.393 / 21.595)</a></li>
+            <li><a href="#caracteristicas" class="hover:text-white transition">Ley N° 19.628 (Protección de Datos)</a></li>
+            <li><a href="#caracteristicas" class="hover:text-white transition">Dictámenes Dirección del Trabajo</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Accesos Rápidos -->
+        <div class="space-y-3">
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider">Acceso al Sistema</h4>
+          <ul class="space-y-2 text-xs">
+            <li>
+              <a href="#precios" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                Contratar Plan con Flow
+              </a>
+            </li>
+            <li>
+              <a href="https://qa.veridio.cl/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-bold flex items-center gap-1.5">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                Ingresar a la plataforma
+              </a>
+            </li>
+            <li><a href="#como-funciona" class="hover:text-white transition">Flujo de Denuncias</a></li>
+            <li><a href="#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+            <li><a href="mailto:contacto@veridio.cl" class="hover:text-white transition">Contacto y Soporte</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 VERIDIO · Canal de denuncias y cumplimiento. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-6">
+          <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Sistemas Operativos 100%
+          </span>
+          <a href="https://qa.veridio.cl/" target="_blank" class="hover:text-slate-300">Portal QA / Producción</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isClosed = mobileMenu.classList.contains('hidden');
+        if (isClosed) {
+          mobileMenu.classList.remove('hidden');
+          menuIconOpen.classList.add('hidden');
+          menuIconClose.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        }
+      });
+
+      // Close menu when clicking links
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    // FAQ Accordion Interactivity
+    document.querySelectorAll('.faq-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('i[data-lucide="chevron-down"]');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all other items
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.faq-btn i[data-lucide="chevron-down"]').forEach(i => i.classList.remove('rotate-180'));
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          if (icon) icon.classList.add('rotate-180');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
